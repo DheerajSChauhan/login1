@@ -1,0 +1,293 @@
+/* 8-bit Color Palette */
+:root {
+    --primary-color: #FF0000; /* Red */
+    --secondary-color: #00FF00; /* Green */
+    --accent-color: #0000FF; /* Blue */
+    --background-color: #000000; /* Black */
+    --text-color: #FFFFFF; /* White */
+    --border-color: #FFFF00; /* Yellow */
+}
+
+/* Pixelated Font */
+/* Attempt to use a pixelated font; provide fallbacks */
+@font-face {
+    font-family: 'PixelFont';
+    /* Note: Actual .ttf or .woff file would need to be hosted and linked.
+       For this example, we'll rely on system fonts or a generic monospace. */
+    /* src: url('path/to/your/pixel-font.ttf'); */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'PixelFont', 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    image-rendering: pixelated; /* Helps with pixel art scaling */
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 3rem; /* Larger for 8-bit feel */
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px var(--border-color);
+    animation: glitch 1.5s infinite steps(2, end);
+}
+
+@keyframes glitch {
+    0%, 100% {
+        text-shadow: 3px 3px 0px var(--border-color), -3px -3px 0px var(--accent-color);
+        transform: translate(0,0);
+        color: var(--primary-color);
+    }
+    10% {
+        text-shadow: 3px 3px 0px var(--accent-color), -3px -3px 0px var(--border-color);
+        transform: translate(-2px, 2px);
+        color: var(--secondary-color);
+    }
+    20% {
+        text-shadow: 3px 3px 0px var(--border-color), -3px -3px 0px var(--accent-color);
+        transform: translate(2px, -2px);
+        color: var(--primary-color);
+    }
+    30%, 70% {
+        text-shadow: none;
+        transform: translate(0,0);
+        color: var(--text-color); /* Flicker to white */
+    }
+    80% {
+        text-shadow: -3px -3px 0px var(--border-color);
+        transform: translate(1px, 1px);
+        color: var(--accent-color);
+    }
+    90% {
+        text-shadow: 3px 3px 0px var(--secondary-color);
+        transform: translate(-1px, -1px);
+        color: var(--primary-color);
+    }
+}
+
+form {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border: 5px solid var(--border-color);
+    box-shadow: 5px 5px 0px var(--accent-color);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: var(--background-color); /* Black text on green background */
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background-color: var(--background-color); /* Black background */
+    color: var(--text-color); /* White text */
+    border: 3px solid var(--border-color); /* Yellow border */
+    padding: 10px;
+    font-family: inherit; /* Inherit body's pixel font */
+    font-size: 1rem;
+    outline: none; /* Remove default outline */
+    caret-color: var(--primary-color); /* Red cursor */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--primary-color); /* Red border on focus */
+    box-shadow: 0 0 10px var(--primary-color); /* Slight glow effect */
+}
+
+button[type="submit"] {
+    background-color: var(--accent-color); /* Blue background */
+    color: var(--text-color); /* White text */
+    border: 3px solid var(--border-color); /* Yellow border */
+    padding: 10px 15px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--primary-color); /* Red shadow */
+    align-self: center; /* Center button in the form */
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.1s; /* Smooth transitions */
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-color); /* Red background on hover */
+    box-shadow: 5px 5px 0px var(--accent-color); /* Blue shadow on hover, slightly larger */
+    transform: scale(1.05); /* Slightly scale up */
+}
+
+button[type="submit"]:active {
+    transform: translate(3px, 3px); /* "Pressed" effect */
+    box-shadow: none;
+}
+
+p {
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: var(--secondary-color); /* Green links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s, text-decoration 0.2s; /* Smooth transitions for links */
+}
+
+a:hover {
+    color: var(--primary-color); /* Red links on hover */
+    text-decoration: underline wavy var(--border-color); /* Wavy underline with border color */
+}
+
+/* Styling for Google Sign-In Button Container */
+.g-signin2 {
+    align-self: center; /* Ensure it's centered like other form elements */
+    margin-top: 20px;
+    margin-bottom: 10px; /* Add some space below it */
+    border: 3px solid var(--border-color); /* Yellow pixelated border */
+    box-shadow: 3px 3px 0px var(--accent-color); /* Blue shadow to match other elements */
+    display: inline-block; /* To make border and shadow wrap tightly */
+}
+
+/* Google's button itself is inside this div. Be careful with direct styling.
+   This primarily styles the container we made. */
+
+/* Media Queries for Responsiveness */
+
+/* Tablet and larger mobile devices */
+@media (max-width: 768px) {
+    body {
+        padding: 20px; /* Add some padding around the content on smaller screens */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Slightly smaller heading */
+        text-shadow: 2px 2px 0px var(--border-color);
+    }
+
+    @keyframes glitch { /* Adjusted glitch for smaller screens - less aggressive */
+        0%, 100% {
+            text-shadow: 2px 2px 0px var(--border-color), -2px -2px 0px var(--accent-color);
+            transform: translate(0,0);
+        }
+        10% {
+            text-shadow: 2px 2px 0px var(--accent-color), -2px -2px 0px var(--border-color);
+            transform: translate(-1px, 1px);
+        }
+        20% {
+            text-shadow: 2px 2px 0px var(--border-color), -2px -2px 0px var(--accent-color);
+            transform: translate(1px, -1px);
+        }
+        30%, 70% {
+            text-shadow: none;
+            transform: translate(0,0);
+        }
+        80% {
+            text-shadow: -2px -2px 0px var(--border-color);
+            transform: translate(0.5px, 0.5px);
+        }
+        90% {
+            text-shadow: 2px 2px 0px var(--secondary-color);
+            transform: translate(-0.5px, -0.5px);
+        }
+    }
+
+
+    form {
+        width: 90%; /* Allow form to take more width */
+        padding: 15px;
+        border-width: 4px;
+        box-shadow: 4px 4px 0px var(--accent-color);
+    }
+
+    label {
+        font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 8px;
+        font-size: 0.9rem;
+        border-width: 2px;
+    }
+
+    button[type="submit"] {
+        font-size: 1.1rem;
+        padding: 8px 12px;
+        border-width: 2px;
+        box-shadow: 2px 2px 0px var(--primary-color);
+    }
+
+    button[type="submit"]:hover {
+        box-shadow: 4px 4px 0px var(--accent-color); /* Adjusted hover shadow */
+    }
+
+    .g-signin2 {
+        border-width: 2px;
+        box-shadow: 2px 2px 0px var(--accent-color);
+        /* The Google button itself might resize, or you might need to adjust its container's width/scale if it becomes too large */
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem; /* Even smaller heading */
+        letter-spacing: 1px;
+    }
+
+    form {
+        gap: 10px; /* Reduce gap between form elements */
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    button[type="submit"] {
+        width: calc(100% - 20px); /* Ensure inputs/button don't overflow form padding */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+    button[type="submit"] {
+        align-self: stretch; /* Make button full width of its container (form) */
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    /* Further simplify glitch or remove if too distracting on very small screens */
+    @keyframes glitch {
+        0%, 100% {
+            text-shadow: 1px 1px 0px var(--border-color);
+            transform: translate(0,0);
+        }
+        50% {
+            text-shadow: -1px -1px 0px var(--accent-color);
+            transform: translate(0,0);
+        }
+    }
+}
